@@ -30,6 +30,7 @@ export default async function handler(req, res) {
       }
     }
     
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
     res.status(200).json({ success: true, symbol: symbol || 'ALL', data: items });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });

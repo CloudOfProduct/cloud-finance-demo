@@ -190,13 +190,13 @@ export const LoginGate: React.FC<LoginGateProps> = ({ onAuthenticated }) => {
         `}
       </style>
 
-      <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', padding: 24, position: 'relative', zIndex: 1 }}>
+      <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', padding: '16px', position: 'relative', zIndex: 1 }}>
         
         <div 
+          className="login-gate-card"
           style={{ 
             width: '100%', 
             maxWidth: 500, 
-            padding: '50px', 
             background: 'linear-gradient(145deg, rgba(20, 20, 25, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%)',
             backdropFilter: 'blur(30px)',
             WebkitBackdropFilter: 'blur(30px)',

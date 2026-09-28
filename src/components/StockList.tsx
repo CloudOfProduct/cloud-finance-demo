@@ -166,6 +166,8 @@ export const StockList: React.FC<StockListProps> = ({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: '12px',
                   padding: '16px 20px',
                   borderRadius: '20px',
                   backgroundColor: 'rgba(20, 20, 22, 0.45)',
@@ -193,7 +195,7 @@ export const StockList: React.FC<StockListProps> = ({
                 }}
               >
                 {/* Left Side: Symbol and Name */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14, flex: 1, minWidth: 0 }}>
+                <div className="stock-row-left" style={{ display: 'flex', alignItems: 'center', gap: 14, flex: 1, minWidth: 200 }}>
                   <button
                     type="button"
                     onClick={(e) => handleToggleStar(e, stock.code)}
@@ -210,7 +212,7 @@ export const StockList: React.FC<StockListProps> = ({
                 </div>
 
                 {/* Right Side: Price, AI Score, and Pill */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <div className="stock-row-right" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(10, 132, 255, 0.15)', border: '1px solid rgba(10,132,255,0.3)', padding: '4px 8px', borderRadius: 8 }}>
                     <span style={{ fontSize: 12, fontWeight: 800, color: '#0a84ff' }}>AI</span>
                     <span style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>{stock.assistantScore}</span>

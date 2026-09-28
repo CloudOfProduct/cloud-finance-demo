@@ -360,3 +360,43 @@ button:active {
   animation: lightning-strike 12s infinite;
   mix-blend-mode: overlay;
 }
+.login-gate-card {
+  padding: 50px;
+}
+
+/* Mobile Responsive Overrides */
+@media (max-width: 768px) {
+  .login-gate-card {
+    padding: 30px 20px !important;
+  }
+  
+  .stock-row-left {
+    min-width: 100% !important;
+  }
+  .stock-row-right {
+    width: 100%;
+    justify-content: space-between !important;
+  }
+  
+  .glass-panel-interactive {
+    padding: 12px 16px !important;
+  }
+
+  /* Reduce font sizes slightly on mobile */
+  .stock-row-left span {
+    font-size: 16px !important;
+  }
+  
+  /* Make modal take full screen on mobile */
+  .modal-content {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  .modal-overlay {
+    padding: 0 !important;
+  }
+}
+

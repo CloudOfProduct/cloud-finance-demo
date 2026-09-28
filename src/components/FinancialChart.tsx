@@ -24,86 +24,98 @@ export const FinancialChart: React.FC<FinancialChartProps> = ({
   const gradientStart = isPositive ? 'rgba(52, 199, 89, 0.2)' : 'rgba(255, 59, 48, 0.2)';
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas || candles.length === 0) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const handleResize = () => {
+      const canvas = canvasRef.current;
+      if (!canvas || candles.length === 0) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
 
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
 
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
+      if (width === 0 || height === 0) return;
 
-    ctx.clearRect(0, 0, width, height);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, width, height);
 
-    const padding = { top: 20, right: 0, bottom: 20, left: 0 };
-    const chartW = width;
-    const chartH = height - padding.top - padding.bottom;
+      const padding = { top: 20, right: 0, bottom: 20, left: 0 };
+      const chartW = width;
+      const chartH = height - padding.top - padding.bottom;
 
-    let minP = Infinity;
-    let maxP = -Infinity;
-    candles.forEach(c => {
-      if (c.close < minP) minP = c.close;
-      if (c.close > maxP) maxP = c.close;
-    });
+      let minP = Infinity;
+      let maxP = -Infinity;
+      candles.forEach(c => {
+        if (c.close < minP) minP = c.close;
+        if (c.close > maxP) maxP = c.close;
+      });
 
-    const range = maxP - minP || 1;
-    minP -= range * 0.1;
-    maxP += range * 0.1;
-    const newRange = maxP - minP;
+      const range = maxP - minP || 1;
+      minP -= range * 0.1;
+      maxP += range * 0.1;
+      const newRange = maxP - minP;
 
-    const getX = (i: number) => (i / (candles.length - 1)) * chartW;
-    const getY = (val: number) => padding.top + (1 - (val - minP) / newRange) * chartH;
-
-    // Draw Line
-    ctx.beginPath();
-    candles.forEach((c, i) => {
-      const x = getX(i);
-      const y = getY(c.close);
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    });
-
-    ctx.strokeStyle = themeColor;
-    ctx.lineWidth = 2.5;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
-    ctx.stroke();
-
-    // Fill under line
-    ctx.lineTo(chartW, height);
-    ctx.lineTo(0, height);
-    ctx.closePath();
-    const gradient = ctx.createLinearGradient(0, padding.top, 0, height);
-    gradient.addColorStop(0, gradientStart);
-    gradient.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = gradient;
-    ctx.fill();
-
-    // Draw Crosshair
-    if (hoverIndex !== null && candles[hoverIndex]) {
-      const x = getX(hoverIndex);
-      const y = getY(candles[hoverIndex].close);
+      const getX = (i: number) => (i / (candles.length - 1)) * chartW;
+      const getY = (val: number) => padding.top + (1 - (val - minP) / newRange) * chartH;
 
       ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, height);
-      ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-      ctx.lineWidth = 1;
+      candles.forEach((c, i) => {
+        const x = getX(i);
+        const y = getY(c.close);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+
+      ctx.strokeStyle = themeColor;
+      ctx.lineWidth = 2.5;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
       ctx.stroke();
 
-      ctx.beginPath();
-      ctx.arc(x, y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = themeColor;
+      ctx.lineTo(chartW, height);
+      ctx.lineTo(0, height);
+      ctx.closePath();
+      const gradient = ctx.createLinearGradient(0, padding.top, 0, height);
+      gradient.addColorStop(0, gradientStart);
+      gradient.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = gradient;
       ctx.fill();
-      ctx.strokeStyle = '#fff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
+
+      if (hoverIndex !== null && candles[hoverIndex]) {
+        const x = getX(hoverIndex);
+        const y = getY(candles[hoverIndex].close);
+
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = themeColor;
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    };
+
+    handleResize();
+
+    const observer = new ResizeObserver(() => {
+      handleResize();
+    });
+    
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
+
+    return () => observer.disconnect();
   }, [candles, hoverIndex, themeColor, gradientStart]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {

@@ -1,0 +1,115 @@
+[
+  {
+    "id": "usr_demo_1",
+    "username": "cloud_investor",
+    "fullName": "Ahmet Yılmaz",
+    "email": "demo@cloudfinance.com",
+    "passwordHash": "demo123",
+    "avatarUrl": "preset_cloud_lightning",
+    "bio": "BIST 100 ve temettü odaklı uzun vadeli portföy yöneticisi.",
+    "phone": "+90 532 555 0123",
+    "role": "Pro Terminal Analisti",
+    "riskTolerance": "Dengeli (Orta Risk)",
+    "defaultHorizon": "1m",
+    "defaultView": "table",
+    "watchlist": [
+      "THYAO",
+      "GARAN",
+      "KCHOL"
+    ],
+    "createdAt": "2026-09-01T10:00:00.000Z",
+    "lastLoginAt": "2026-09-28T20:42:20.421Z",
+    "twoFactorEnabled": false,
+    "notifications": {
+      "kapAlerts": true,
+      "priceAlerts": true,
+      "dailyDigest": true,
+      "emailNotifications": false
+    }
+  },
+  {
+    "id": "usr_1790529626217_5hwgi",
+    "username": "bist_pro",
+    "fullName": "Mehmet Özdemir",
+    "email": "mehmet@example.com",
+    "passwordHash": "mypassword123",
+    "avatarUrl": "preset_golden_bull",
+    "bio": "Borsa İstanbul teknik ve temel analiz uzmanı.",
+    "phone": "",
+    "role": "Bireysel Yatırımcı",
+    "riskTolerance": "Büyüme Odaklı (Yüksek Risk)",
+    "defaultHorizon": "1m",
+    "defaultView": "table",
+    "watchlist": [
+      "THYAO",
+      "GARAN",
+      "DMSAS",
+      "ASELS"
+    ],
+    "createdAt": "2026-09-27T17:20:26.218Z",
+    "lastLoginAt": "2026-09-27T17:20:26.218Z",
+    "twoFactorEnabled": false,
+    "notifications": {
+      "kapAlerts": true,
+      "priceAlerts": true,
+      "dailyDigest": true,
+      "emailNotifications": false
+    }
+  },
+  {
+    "id": "usr_1790540013960_pfz0u",
+    "username": "karpazli",
+    "fullName": "Bulut",
+    "email": "karpazlibulut@gmail.com",
+    "passwordHash": "2008",
+    "avatarUrl": "preset_cloud_lightning",
+    "bio": "Cloud Finance BİST Yatırımcısı",
+    "phone": "",
+    "role": "Bireysel Yatırımcı",
+    "riskTolerance": "Dengeli (Orta Risk)",
+    "defaultHorizon": "1m",
+    "defaultView": "table",
+    "watchlist": [
+      "THYAO",
+      "GARAN",
+      "DMSAS",
+      "ASELS"
+    ],
+    "createdAt": "2026-09-27T20:13:33.960Z",
+    "lastLoginAt": "2026-09-28T17:42:11.285Z",
+    "twoFactorEnabled": false,
+    "notifications": {
+      "kapAlerts": true,
+      "priceAlerts": true,
+      "dailyDigest": true,
+      "emailNotifications": false
+    }
+  },
+  {
+    "id": "usr_1790617145115_1zfx3",
+    "username": "borakaratas",
+    "fullName": "borakaratas",
+    "email": "bora@bistfinans.com",
+    "passwordHash": "NewSecurePassword456!",
+    "avatarUrl": "preset_cloud_lightning",
+    "bio": "BIST 30 & Algoritmik İşlemler Yatırımcısı",
+    "phone": "",
+    "role": "Bireysel Yatırımcı",
+    "riskTolerance": "Dengeli (Orta Risk)",
+    "defaultHorizon": "3m",
+    "defaultView": "table",
+    "watchlist": [
+      "GARAN",
+      "DMSAS"
+    ],
+    "createdAt": "2026-09-28T17:39:05.115Z",
+    "lastLoginAt": "2026-09-28T17:39:05.152Z",
+    "twoFactorEnabled": false,
+    "notifications": {
+      "kapAlerts": true,
+      "priceAlerts": true,
+      "dailyDigest": true,
+      "emailNotifications": false
+    }
+  }
+]
